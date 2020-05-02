@@ -1,15 +1,6 @@
 #####     Agustin Palao
-#####                    Data for Dissertation
-#####                    Credit Guarantees from FIRA
+#####                    Data for Credit Guarantees
 #####                   Create time series graphs
-
-#SET THE WORKING DIRECTORY
-# vAIO Laptop
-setwd("C:/Users/Agustin/Dropbox/Dissertation/Data/RWD")
-# Home Desktop
-#setwd("C:/Users/Escritorio/Dropbox/Dissertation/Data/RWD")
-# School Desktop
-setwd("C:/Users/axp121731/Dropbox/Dissertation/Data/RWD")
 
 require(foreign)
 library(data.table)
@@ -145,10 +136,6 @@ Fsh_chain1["TOTAL" ,] <- colSums(Fsh_chain1)
 
 xtable(Fsh_chain1)
 
-
-
-
-
 #Create a table by Financial Intermediaries
 FI_cat<-read.csv("FIs.csv")
 b_FI <- merge(b, FI_cat , by.x="ID_FI", by.y = "ID") #,all=TRUE)
@@ -159,7 +146,6 @@ FIsType<-sort(table(b_FI$FI_TYPE), decreasing = TRUE)
 pctg_FIsType<-FIsType/margin.table(FIsType)
 FIs<-sort(table(FI), decreasing=TRUE)
 pctg_FI<-FIs/margin.table(FIs)
-
 
 FI<-as.data.frame(FI)
 names(FI)[names(FI)=="dimnames"] <- "ID_FI"
@@ -179,13 +165,5 @@ lp<-pie3D(pct, radius = 2.5, start = 0,theta = 0.9, height = .2, explode=0.2, co
 lp[3]<-6.4
 pie3D.labels(lp,labels=lbls,labelcex = 1.2,labelrad = 2.4, minsep = 0.5)
 
-lp[1]<-(-1.8)
-lp[2]<-(-1)
-pie3D(pct, start=10, labels=lbls,explode=0.2)
-     
-pieval<-c(2,4,6,8)
-bisectors<-pie3D(pieval,explode=0.1,main="3D PIE OPINIONS")
-pielabels<-
-  c("We hate\n pies","We oppose\n  pies","We don't\n  care","We just love pies")
-pie3D.labels(bisectors,labels=pielabels)
+
 
